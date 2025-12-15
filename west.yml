@@ -64,7 +64,7 @@ manifest:
     # https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/zephyr/guides/modules.html
     - name: zephyr
       repo-path: sdk-zephyr
-      revision: dcb90afc70fbc3600b66fa4bc234f14021c3ef94
+      revision: pull/3643/head
       import:
         # In addition to the zephyr repository itself, NCS also
         # imports the contents of zephyr/west.yml at the above
@@ -87,6 +87,7 @@ manifest:
           - edtt
           - fatfs
           - hal_nordic
+          - nrfx
           - hal_st # required for ST sensors (unrelated to STM32 MCUs)
           - hal_tdk # required for Invensense sensors such as ICM42670
           - hal_wurthelektronik
