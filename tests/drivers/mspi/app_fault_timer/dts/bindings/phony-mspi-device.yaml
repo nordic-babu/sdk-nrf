@@ -1,0 +1,12 @@
+#
+# Copyright (c) 2026 Nordic Semiconductor ASA
+#
+# SPDX-License-Identifier: LicenseRef-Nordic-5-Clause
+#
+
+description: Phony MSPI device
+
+compatible: "phony-mspi-device"
+
+include:
+  - name: mspi-device.yaml

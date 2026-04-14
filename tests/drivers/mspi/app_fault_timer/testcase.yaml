@@ -15,3 +15,10 @@ tests:
       - nrf54lm20dk/nrf54lm20b/cpuapp
     integration_platforms:
       - nrf54l15dk/nrf54l15/cpuapp
+  drivers.mspi.hpf_app_fault_timer.phony_mspi_dev:
+    platform_allow:
+      - nrf54lv10dk/nrf54lv10a/cpuapp
+    integration_platforms:
+      - nrf54lv10dk/nrf54lv10a/cpuapp
+    extra_args:
+      - EXTRA_DTC_OVERLAY_FILE="boards/phony_device.overlay"
