@@ -9,9 +9,9 @@
 #include <zephyr/drivers/counter.h>
 #include <zephyr/devicetree.h>
 
-#if IS_ENABLED(DT_HAS_JEDEC_MSPI_NOR_ENABLED)
+#if IS_ENABLED(CONFIG_DT_HAS_JEDEC_MSPI_NOR_ENABLED)
 #include <zephyr/drivers/flash.h>
-#elif IS_ENABLED(DT_HAS_PHONY_MSPI_DEVICE_ENABLED)
+#elif IS_ENABLED(CONFIG_DT_HAS_PHONY_MSPI_DEVICE_ENABLED)
 #include <zephyr/drivers/mspi.h>
 #else
 #error "The test requires an enabled MSPI NOR flash memory or a phony MSPI device"
@@ -20,7 +20,7 @@
 #define BUFFER_SIZE	64
 #define TIMEOUT		15000000
 
-#if IS_ENABLED(DT_HAS_JEDEC_MSPI_NOR_ENABLED)
+#if IS_ENABLED(CONFIG_DT_HAS_JEDEC_MSPI_NOR_ENABLED)
 #define FLASH_TEST_AREA_DEV_NODE	DT_INST(0, jedec_mspi_nor)
 #define FLASH_TEST_AREA_OFFSET		0x0
 
@@ -58,7 +58,7 @@ static void fault_timer_before(void *arg)
 		.ticks = counter_us_to_ticks(flpr_fault_timer, CONFIG_MSPI_HPF_FAULT_TIMEOUT)
 	};
 
-#if IS_ENABLED(DT_HAS_JEDEC_MSPI_NOR_ENABLED)
+#if IS_ENABLED(CONFIG_DT_HAS_JEDEC_MSPI_NOR_ENABLED)
 	zassert_true(device_is_ready(flash_dev));
 #else
 	rc = mspi_dev_config(mspi_bus, &phony_dev_id, MSPI_DEVICE_CONFIG_ALL, &phony_dev_cfg);
@@ -85,7 +85,7 @@ ZTEST(hpf_fault_timer, test_timer_timeout)
 	/* 1. The timer is started and the flash is read. */
 	rc = counter_start(flpr_fault_timer);
 	zassert_equal(rc, 0, "Cannot start timer");
-#if IS_ENABLED(DT_HAS_JEDEC_MSPI_NOR_ENABLED)
+#if IS_ENABLED(CONFIG_DT_HAS_JEDEC_MSPI_NOR_ENABLED)
 	rc = flash_read(flash_dev, FLASH_TEST_AREA_OFFSET, buf, BUFFER_SIZE);
 	zassert_equal(rc, 0, "Cannot read flash");
 #else
