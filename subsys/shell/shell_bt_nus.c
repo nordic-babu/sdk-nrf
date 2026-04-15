@@ -63,8 +63,9 @@ static void tx_try(const struct shell_bt_nus *bt_nus)
 		if (err == 0) {
 			LOG_DBG("Sent %d bytes", size);
 		} else {
-			LOG_INF("Failed to send %d bytes (%d error)",
-								size, err);
+			/* Avoid recursive logging through the same NUS shell transport
+			 * when a connection drops or notifications are no longer valid.
+			 */
 			bt_nus->ctrl_blk->tx_busy = 0;
 		}
 	} else {
