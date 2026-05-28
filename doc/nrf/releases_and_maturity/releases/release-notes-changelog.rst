@@ -248,6 +248,7 @@ Connectivity bridge
 High-Performance Framework (HPF)
 --------------------------------
 
+* Added support for the nRF54LC10A SoC.
 * Added support for the nRF54LV10A SoC in HPF MSPI.
 
 IPC radio firmware
